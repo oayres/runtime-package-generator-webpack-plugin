@@ -10,6 +10,7 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
 
 ## Usage
 
+```
   const fs = require('fs')
   const packageJson = fs.readFileSync('./package.json')
 
@@ -23,3 +24,4 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
       })
     ]
   }
+```
