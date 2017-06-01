@@ -6,7 +6,7 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
 
 ## Installation
 
-  npm install runtime-package-generator-webpack-plugin --save-dev
+  ```npm install runtime-package-generator-webpack-plugin --save-dev```
 
 ## Usage
 
