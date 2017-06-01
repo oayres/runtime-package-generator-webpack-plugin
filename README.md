@@ -10,6 +10,8 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
 
 ## Usage
 
+The plugin *must* be used in conjunction with the [nodeExternals](https://www.npmjs.com/package/webpack-node-externals) feature, which will ignore a require (i.e. Webpack will not resolve it), like so:
+
 ```
   const fs = require('fs')
   const packageJson = fs.readFileSync('./package.json')
@@ -22,6 +24,11 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
         requiredAtRuntime: ['dependency-to-keep'],
         newPath: path.resolve(__dirname, '../../../build/server/package.json')
       })
-    ]
+    ],
+    externals: [nodeExternals({
+      whitelist: function (name) {
+        return name.indexOf('dependency-to-keep') > -1
+      }
+    })]
   }
 ```
