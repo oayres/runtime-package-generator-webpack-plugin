@@ -18,7 +18,7 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
     // ... config
     plugins: [
       new RuntimePackagePlugin({
-        package: package,
+        package: packageJson,
         requiredAtRuntime: ['dependency-to-keep'],
         newPath: path.resolve(__dirname, '../../../build/server/package.json')
       })
