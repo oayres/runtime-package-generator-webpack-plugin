@@ -1,0 +1,14 @@
+{
+  "name": "dependency-mover-webpack-plugin",
+  "version": "0.0.1",
+  "description": "Moves Node dependencies into builds if they need to be separate for some reason. Allows for external runtime dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Owen Ayres <owen.ayres@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}
