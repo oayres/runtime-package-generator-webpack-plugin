@@ -1,6 +1,6 @@
 {
   "name": "runtime-package-generator-webpack-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Moves Node dependencies into builds if they need to be separate for some reason. Allows for external runtime dependencies.",
   "main": "index.js",
   "repository": {
