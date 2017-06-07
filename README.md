@@ -22,7 +22,7 @@ The plugin *must* be used in conjunction with the [nodeExternals](https://www.np
     plugins: [
       new RuntimePackagePlugin({
         requiredAtRuntime: ['dependency-to-keep'], // required, defaults to []
-        out: 'build/server' // defaults to 'build/package.json'
+        dest: 'build/server' // defaults to 'build/package.json'
       })
     ],
     externals: [nodeExternals({
