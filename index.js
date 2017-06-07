@@ -1,14 +1,25 @@
 const fs = require('fs')
 
 function RuntimePackagePlugin (options) {
-  this.newPath = options.newPath
+  this.dest = options.dest || options.newPath || './build/'
   this.requiredAtRuntime = options.requiredAtRuntime
-  this.package = JSON.parse(options.package)
+
+  if (this.dest.indexOf('package.json') > -1) {
+    this.dest.replace('package.json', '')
+  }
+
+  if (options.package) {
+    this.package = JSON.parse(options.package)
+  } else {
+    const packageJson = fs.readFileSync('./package.json')
+    this.package = JSON.parse(packageJson)
+  }
+
   this.newPackage = {
-    name: this.package.name,
-    description: this.package.description,
-    version: this.package.version,
-    author: this.package.author,
+    name: this.package.name || 'runtime-package',
+    description: this.package.description || 'The rutime package containing dependencies that need to be external.',
+    version: this.package.version || '1.0',
+    author: this.package.author || '',
     dependencies: {}
   }
 
@@ -22,8 +33,12 @@ function RuntimePackagePlugin (options) {
 }
 
 RuntimePackagePlugin.prototype.apply = function (compiler) {
-  compiler.plugin('done', function (compilations) {
-    fs.writeFileSync(this.newPath, JSON.stringify(this.newPackage), 'utf8')
+  compiler.plugin('done', function () {
+    if (!fs.existsSync(this.dest)) {
+      fs.mkdirSync(this.dest)
+    }
+
+    fs.writeFileSync(this.dest + '/package.json', JSON.stringify(this.newPackage), 'utf8')
   }.bind(this))
 }
 
