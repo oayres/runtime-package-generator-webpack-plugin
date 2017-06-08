@@ -16,19 +16,28 @@ The plugin *must* be used in conjunction with the [nodeExternals](https://www.np
 
 ```
   const RuntimePackagePlugin = require('runtime-package-generator-webpack-plugin')
+  const runtimeDependencies = ['dependency-1', 'dependency-2']
 
   {
     // ... config
     plugins: [
       new RuntimePackagePlugin({
-        requiredAtRuntime: ['dependency-to-keep'], // required, defaults to []
-        dest: 'build/server' // defaults to 'build/package.json'
+        requiredAtRuntime: runtimeDependencies, // default: []
+        dest: 'build/server' // default: 'build/package.json'
       })
     ],
-    externals: [nodeExternals({
-      whitelist: function (name) {
-        return name.indexOf('dependency-to-keep') > -1
-      }
-    })]
+    externals: [
+      nodeExternals({
+        whitelist: runtimeDependencies
+      })
+    ]
   }
+```
+
+You might wish to combine this with a postbuild task to keep everything automatic. This would cd into the target directory of your new package.json the plugin created and automatically run an npm install to get those separate node dependencies in there. This is out of the scope of what this plugin should deliver, hence it is recommended to do such a task like the below snippet.
+
+```
+  "prebuild": "rimraf build",
+  "build": "NODE_ENV=production webpack --config webpack.config.js",
+  "postbuild": "cd build/server && npm install"
 ```
