@@ -15,6 +15,7 @@ This Webpack plugin will allow you to generate a package.json dynamically for yo
 The plugin *must* be used in conjunction with the [nodeExternals](https://www.npmjs.com/package/webpack-node-externals) feature, which will ignore a require (i.e. Webpack will not resolve it), like so:
 
 ```
+  const nodeExternals = require('webpack-node-externals')
   const RuntimePackagePlugin = require('runtime-package-generator-webpack-plugin')
   const runtimeDependencies = ['dependency-1', 'dependency-2']
 
