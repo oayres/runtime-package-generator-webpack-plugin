@@ -28,6 +28,9 @@ function RuntimePackagePlugin (options) {
   this.requiredAtRuntime.forEach(function (dependency) {
     if (keys.indexOf(dependency) > -1) {
       this.newPackage.dependencies[dependency] = this.package.dependencies[dependency]
+    } else {
+      console.warn('RuntimePackagePlugin: The dependency "' + dependency + '" could not be found in your package.json dependencies.')
+      console.warn('Is it defined in devDependencies by accident? \n')
     }
   }.bind(this))
 }
