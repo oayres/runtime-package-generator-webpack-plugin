@@ -23,10 +23,12 @@ The plugin *must* be used in conjunction with the [nodeExternals](https://www.np
     // ... config
     plugins: [
       new RuntimePackagePlugin({
-        requiredAtRuntime: runtimeDependencies, // default: []
-        dest: 'build/server' // default: 'build/package.json',
+        requiredAtRuntime: runtimeDependencies,
 
-        // optional. format the output json file. These are defaults
+        // optional target directory. default: 'build/package.json'
+        dest: 'build/server',
+
+        // optional json format. These are defaults
         jsonFormat: {
           type: 'spaces',
           size: 2
