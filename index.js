@@ -1,8 +1,18 @@
 const fs = require('fs')
+const jsonFormat = require('json-format')
 
 function RuntimePackagePlugin (options) {
   this.dest = options.dest || options.newPath || './build/'
   this.requiredAtRuntime = options.requiredAtRuntime
+  this.jsonFormat = {
+    type: 'space',
+    size: 2
+  }
+
+  if (options.jsonFormat) {
+    this.jsonFormat.type = options.jsonFormat.type || 'space'
+    this.jsonFormat.size = options.jsonFormat.size || 2
+  }
 
   if (this.dest.indexOf('package.json') > -1) {
     this.dest.replace('package.json', '')
@@ -41,7 +51,7 @@ RuntimePackagePlugin.prototype.apply = function (compiler) {
       fs.mkdirSync(this.dest)
     }
 
-    fs.writeFileSync(this.dest + '/package.json', JSON.stringify(this.newPackage), 'utf8')
+    fs.writeFileSync(this.dest + '/package.json', jsonFormat(this.newPackage, this.jsonFormat), 'utf8')
   }.bind(this))
 }
 

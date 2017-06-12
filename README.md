@@ -24,7 +24,13 @@ The plugin *must* be used in conjunction with the [nodeExternals](https://www.np
     plugins: [
       new RuntimePackagePlugin({
         requiredAtRuntime: runtimeDependencies, // default: []
-        dest: 'build/server' // default: 'build/package.json'
+        dest: 'build/server' // default: 'build/package.json',
+
+        // optional. format the output json file. These are defaults
+        jsonFormat: {
+          type: 'spaces',
+          size: 2
+        }
       })
     ],
     externals: [

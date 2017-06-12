@@ -10,7 +10,8 @@
   "author": "Owen Ayres <owen.ayres@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "json-format": "^1.0.1"
   },
   "peerDependencies": {
     "webpack-node-externals": "^1.6.0"
